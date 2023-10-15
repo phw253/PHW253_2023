@@ -16,7 +16,7 @@ In this session, we will use data from a church outbreak in a small village of L
 ## Step 1: Import data set
 
 ```{r}
-oswego <- read.csv("~/PHW253_2022/PHW253Oswegorevised.csv",
+oswego <- read.csv("~/PHW253_2023/PHW253Oswegorevised.csv",
                    header=TRUE,
                    na.strings=".")
 ```
