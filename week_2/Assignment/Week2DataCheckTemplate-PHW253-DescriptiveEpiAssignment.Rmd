@@ -1,0 +1,63 @@
+--
+title: "Week 2 data check template: PHW253 Descriptive Epidemiology Assignment"
+author: "student"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Show R code in output for all R chunks
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+
+# * Purpose: Code for Week 2 data check of the Descriptive Epi Assignment
+# * Data: PH W253 Descriptive Epi Assignment line list_redacted.xlsx
+
+##### Step 1: Copy all of the code needed to complete the Week 1 data check including: 
+##### library code for all packages listed in Week 1 template,
+##### importing the dataset, 
+##### and creating new dataset and keep only rows where MLVA is an A, A2,A3 pattern
+
+
+
+
+
+
+#### Step 2: Look at State variable
+```{r}
+
+```
+
+#### Step 3: Define region using census definition  https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf
+```{r}
+
+```
+
+
+
+#### Step 4: Look at region variable and tabulate number of cases by region
+
+```{r}
+
+```
+
+
+#### Step 5: Dates in R: What format is OnsetDate in?
+```{r}
+
+```
+
+
+##### Step 6: Create a new variable with onset date in ymd date format and confirm new variable format
+```{r}
+
+```
+
+
+##### Step 7: Can tabulate new variable to obtain date ranges and determine if there are missing values
+```{r}
+
+```
+
