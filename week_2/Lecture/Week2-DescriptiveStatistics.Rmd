@@ -144,6 +144,23 @@ oswego %>%                                    # case linelist
   flextable::save_as_docx(path = "~/PHW253_2022/tabyl_ageill.docx")   # save as Word document
 ```
 
+## Step 5: Creating a table using kable()
+
+```{r}
+# Usekable to create a table
+library(knitr)
+
+table(oswego$agecat)
+kable(table(oswego$agecat))
+kable(table(oswego$agecat), col.names=c("Age (Years)","Frequency"), align="lc")
+
+table(oswego$agecat, oswego$ill, exclude=NULL)
+kable(table(oswego$agecat, oswego$ill, exclude=NULL))
+kable(table(oswego$agecat, oswego$ill, exclude=NULL), caption="Frequency of Age (years) by Ill Status")
+
+
+```
+
 This is the end of the file.
 
 
