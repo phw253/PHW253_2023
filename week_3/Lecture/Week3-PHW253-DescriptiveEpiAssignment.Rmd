@@ -77,70 +77,7 @@ outbreakA <- outbreak %>%
 
 head(outbreakA)
 
-## can use case_when instead too
-outbreakA$Region<-ifelse(outbreakA$State=="CT" |
-                        outbreakA$State=="MA" |
-                        outbreakA$State=="ME" |
-                        outbreakA$State=="NH" |
-                        outbreakA$State=="NJ" |
-                        outbreakA$State=="NY" |
-                        outbreakA$State=="PA" |
-                        outbreakA$State=="RI" |
-                        outbreakA$State=="VT", "Region I. Northeast",NA) 
 
-outbreakA$Region<-ifelse(outbreakA$State=="IA" |
-                          outbreakA$State=="IL" |
-                          outbreakA$State=="IN" |
-                          outbreakA$State=="KS" |
-                          outbreakA$State=="MI" |
-                          outbreakA$State=="MN" |
-                          outbreakA$State=="MO" |
-                          outbreakA$State=="ND" |
-                          outbreakA$State=="NE" |
-                          outbreakA$State=="OH" |
-                          outbreakA$State=="SD" |
-                          outbreakA$State=="WI" , "Region II. Midwest",outbreakA$Region)
-
-outbreakA$Region<-ifelse(outbreakA$State=="AL" |
-                           outbreakA$State=="AR" |
-                           outbreakA$State=="DE" |
-                           outbreakA$State=="DC" |
-                           outbreakA$State=="FL" |
-                           outbreakA$State=="GA" |
-                           outbreakA$State=="KY" |
-                           outbreakA$State=="LA" |
-                           outbreakA$State=="MD" |
-                           outbreakA$State=="MS" |
-                           outbreakA$State=="NC" |
-                           outbreakA$State=="OK" |
-                           outbreakA$State=="SC" |
-                           outbreakA$State=="TN" |
-                           outbreakA$State=="TX" |
-                           outbreakA$State=="VA" |
-                           outbreakA$State=="WV" , "Region III. South",outbreakA$Region)
-
-outbreakA$Region<-ifelse(outbreakA$State=="AK" |
-                           outbreakA$State=="AZ" | 
-                           outbreakA$State=="CA" |
-                           outbreakA$State=="CO" |
-                           outbreakA$State=="HI" |
-                           outbreakA$State=="ID" |
-                           outbreakA$State=="MT" |
-                           outbreakA$State=="NM" |
-                           outbreakA$State=="NV" |
-                           outbreakA$State=="OR" |
-                           outbreakA$State=="UT" |
-                           outbreakA$State=="WA" |
-                           outbreakA$State=="WY" , "Region IV. West",outbreakA$Region)
-
-## new variable Region is a character variable
-table(outbreakA$Region, exclude=NULL)
-
-## cross-tabulation to check variable re-code 
-## need package janitor to run this code
-outbreakA %>% tabyl(State, Region)
-# alternative code using table
-table(outbreakA$State, outbreakA$Region, exclude=NULL)
 ```
 
 # Dates in R
@@ -177,7 +114,7 @@ NOTE: It is difficult to see epi peak on daily curve. The rest of code creates a
 ```{r}
 epi_day <- incidence(       # create incidence object
   x = outbreakA,             # dataset
-  date_index = newOnset,  # date column
+  date_index = "newOnset",  # date column
   interval = "day"          # date grouping interval
 )
 
@@ -208,7 +145,7 @@ plot(epi_day, xlab = "Date of illness onset") +
 ```{r}
 epi_week <- incidence(              # create incidence object
             x = outbreakA,          # dataset
-            date_index = newOnset,  # date column
+            date_index = "newOnset",  # date column
             interval = 7            # date grouping interval e.g., every 7 days
 )
 ## NOTE: log states that 7 missing observations were removed from epi_week
@@ -217,6 +154,21 @@ epi_week
  
 # Plot the epi curve
 plot(epi_week)
+
+## If above code will not plot use the below code
+epi_week <- incidence(              # create incidence object
+            x = outbreakA,          # dataset
+            date_index = "newOnset",  # date column
+            interval = "week"            # date grouping interval e.g., every 7 days
+)
+## NOTE: log states that 7 missing observations were removed from epi_week
+
+epi_week
+ 
+# Plot the epi curve
+plot(epi_week)
+
+
 ```
 
 ## Refine the epidemic curve
