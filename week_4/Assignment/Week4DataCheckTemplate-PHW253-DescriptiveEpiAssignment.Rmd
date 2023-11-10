@@ -1,0 +1,138 @@
+---
+title: "Week 4 Data Check Template"
+author: "student"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Show R code in output for all R chunks
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+
+* Purpose: Code for Week 4 data check of the Hypothesis Testing Assignment
+* Data: PHW253_Wk6_CaseControlStudy_redacted_notxt.xlsx
+
+
+# Preliminary
+
+Call in the necessary R packages for this assignment.
+
+## install packages 
+## (just run once and then comment out by adding ## in front of line)
+## install.packages("rio")
+## install.packages("skimr")
+## install.packages("dplyr")
+## install.packages("janitor")
+## install.packages("survival")
+
+ 
+###### Step 0: Load packages
+ 
+```{r}
+## load packages
+## run everytime
+
+## rio needed for import code
+library(rio)
+## dplyr needed for mutate or recode
+library(dplyr)
+## janitor needed for crosstable
+library(janitor)
+## survival needed for clogit
+library(survival)
+```
+
+# Data Set
+
+##### Step 1: Import the data. Look at the variable names and use janitor package to clean variable names.
+
+## In Weeks 1-3, we used line listing (a dataset with only the cases)
+## In Weeks 4-6, we will use outbreak investigation dataset (a matched case-control study)
+```{r}
+## import
+
+
+## look at the dataset 
+## example: names(dataset)
+
+
+## janitor package clean names changes the column names to lower case & replaces
+## the spaces in column names with an underscore
+## example: newnamedataset<- dataset  %>% janitor::clean_names()
+
+
+
+```
+
+##### Step 2: Subset the data (all code is provided)
+
+The data set contains more records than needed for the matched case-control study. Thus, you will have to subset the data in order to get the study data set.
+
+```{r}
+## Select only cases that have matched controls
+ecoli2 <- ecoli1 %>% 
+  filter(cdcid !="CDC001" & cdcid !="CDC006" & cdcid !="CDC009" & cdcid !="CDC012" & 
+           cdcid !="CDC015" & cdcid !="CDC022" & cdcid !="CDC023" & cdcid !="CDC024" & 
+           cdcid !="CDC037" & cdcid !="CDC043" & cdcid !="CDC045" & cdcid !="CDC046" & 
+           cdcid !="CDC048" & cdcid !="CDC049" & cdcid !="CDC067" & cdcid !="CDC068")   
+
+## Some cases have multiple controls
+ecoli2 %>%  filter(cdcid == "CDC047")  %>% tabyl(case)
+
+## Only keep controlletter=A for cdcid=="CDC047"
+x<-which(ecoli2$cdcid =="CDC047" & ecoli2$controlletter=="B")   
+ecoli3 <-ecoli2[-x, ]    
+
+dim(ecoli3)
+```
+
+##### Step 3: Tabulate number of total cases and total controls in cleaned dataset 
+## In Week 6, these are the numbers you'll add to the column headings in the provide table template 
+
+```{r}
+
+
+
+```
+
+
+##### Step 4: Look at the strawberry variable. For conditional logistic regression, all values need to be 0 or 1. 
+##### Recode other values to missing. 
+
+```{r}
+
+```
+
+
+
+##### Step 4: Tabulate the count of cases who ate strawberries. Tabulate the count of controls who ate strawberries. 
+```{r}
+
+
+
+```
+
+
+
+##### Step 5: Calculate the percent exposed among all cases. Calculate the percent exposed among all controls.
+```{r}
+
+```
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
