@@ -1,0 +1,74 @@
+---
+title: "Week 5 Data Check Template"
+author: "Wayne Enanoria"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Show R code in output for all R chunks
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+
+* Purpose: Code for Week 5 Data Check Template 
+* Data: PHW253_Wk6_CaseControlStudy_redacted_notxt.xlsx
+
+
+# Preliminary
+
+Call in the necessary R packages for this assignment.
+
+## install packages 
+## (just run once and then comment out by adding ## in front of line)
+## install.packages("rio")
+## install.packages("skimr")
+## install.packages("dplyr")
+## install.packages("janitor")
+## install.packages("survival")
+
+ 
+###### Step 0: Load packages. Import dataset. Subset the data (all code is provided in Week 4). 
+###### For conditional logistic regression, all food item values need to be 0 or 1; recode other values to missing. 
+ 
+```{r}
+
+```
+
+###### Step 1: Need to create a numeric variable that identifies each pair (all code is provided)
+
+## this is called strata in the regression code
+## first, select last two characters of the CDCID string/character variable (new variable stratachar)
+## then, convert to a numeric format (new variable stratanum)
+
+```{r}
+ecoli3$stratachar<-substr(ecoli3$cdcid,start=5,stop=6)
+
+ecoli3 %>%  tabyl(stratachar)
+
+ecoli3$stratanum<-as.numeric(ecoli3$stratachar)
+
+ecoli3 %>%  tabyl(stratachar,stratanum)
+```
+
+
+
+ 
+##### Step 2: Conidtional logsitic regression.
+ 
+```{r}
+## See Week5 Conditional Logistic Regression lecture video and code on datahub for example code
+
+
+
+```
+
+
+
+
+
+ 
+
+
+
